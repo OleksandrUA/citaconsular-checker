@@ -1,5 +1,6 @@
 // check.js
 const axios = require("axios");
+const https = require("https");
 
 const URL =
   "https://www.citaconsular.es/es/hosteds/widgetdefault/298f7f17f58c0836448a99edecf16e66a";
@@ -7,8 +8,15 @@ const URL =
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
+// Configurar axios para ignorar errores de certificado SSL
+const axiosInstance = axios.create({
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  }),
+});
+
 async function notify(msg) {
-  await axios.post(
+  await axiosInstance.post(
     `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
     {
       chat_id: TELEGRAM_CHAT_ID,
@@ -19,7 +27,7 @@ async function notify(msg) {
 
 async function checkAvailability() {
   try {
-    const { data } = await axios.get(URL, { timeout: 10000 });
+    const { data } = await axiosInstance.get(URL, { timeout: 10000 });
 
     if (data && data.trim().length > 100) {
       await notify("🚨 El sistema de citas consulares ya muestra contenido!");
