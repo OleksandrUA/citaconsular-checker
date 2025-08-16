@@ -2,19 +2,26 @@ name: Check CitaConsular
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # cada 5 min
-  workflow_dispatch: # permite correrlo manualmente
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
-      - run: npm install
-      - run: node check.js
+
+      - name: Instalar dependencias
+        run: npm install
+        working-directory: ./ # <-- asegura que npm busque package.json en la raíz
+
+      - name: Ejecutar check
+        run: node check.js
+        working-directory: ./ # <-- asegura que node busque el script en la raíz
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

@@ -1,0 +1,32 @@
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Entornos
+.env
+.env.local
+.env.*.local
+
+# Salidas
+dist/
+build/
+coverage/
+tmp/
+out/
+
+# Logs
+*.log
+*.gz
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
