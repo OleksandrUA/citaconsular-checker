@@ -14,7 +14,9 @@ jobs:
         with:
           node-version: "18"
       - run: npm install
+        working-directory: ./
       - run: node check.js
+        working-directory: ./
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
