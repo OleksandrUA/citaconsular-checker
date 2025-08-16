@@ -10,11 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "npm"
+      - name: Clear npm cache
+        run: npm cache clean --force
       - run: npm ci
+        working-directory: ./
+      - name: Debug - Show file contents
+        run: |
+          echo "=== Package.json ==="
+          cat package.json
+          echo "=== Check.js first 5 lines ==="
+          head -5 check.js
         working-directory: ./
       - run: node check.js
         working-directory: ./
