@@ -1,5 +1,5 @@
 // check.js
-import axios from "axios";
+const axios = require("axios");
 
 const URL =
   "https://www.citaconsular.es/es/hosteds/widgetdefault/298f7f17f58c0836448a99edecf16e66a";
