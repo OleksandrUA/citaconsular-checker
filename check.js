@@ -32,7 +32,7 @@ async function checkAvailability() {
     if (data && data.trim().length > 100) {
       await notify("🚨 El sistema de citas consulares ya muestra contenido!");
     } else {
-      console.log("⏳ Página aún vacía...");
+      await notify("🚨 El sistema de citas consulares no muestra contenido!");
     }
   } catch (err) {
     console.error("❌ Error:", err.message);
