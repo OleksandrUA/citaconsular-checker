@@ -3,7 +3,7 @@ const axios = require("axios");
 const https = require("https");
 
 const URL =
-  "https://www.citaconsular.es/es/hosteds/widgetdefault/298f7f17f58c0836448a99edecf16e66a";
+  "https://www.citaconsular.es/de/hosteds/widgetdefault/2bac73d737f88b7858c01d79d5a1aef8f";
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
